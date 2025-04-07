@@ -12,7 +12,10 @@ import {
   Register,
   SingleProduct,
 } from "./pages";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ErrorElement } from "./components";
+import { loader as landingLoader } from "./pages/Landing";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,8 @@ const router = createBrowserRouter([
       {
         index: true, // This will make it the default route
         element: <Landing />,
+        loader: landingLoader,
+        errorElement: <ErrorElement />,
       },
       {
         path: "products",
