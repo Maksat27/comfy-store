@@ -15,8 +15,12 @@ import {
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorElement } from "./components";
-import { loader as landingLoader } from "./pages/Landing";
 
+// loaders
+import { loader as landingLoader } from "./pages/Landing";
+import { loader as singleProductLoader } from "./pages/SingleProduct";
+
+// actions
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +40,8 @@ const router = createBrowserRouter([
       {
         path: "products/:id", // Dynamic route for single product
         element: <SingleProduct />,
+        loader: singleProductLoader,
+        errorElement: <ErrorElement />,
       },
       {
         path: "about",
