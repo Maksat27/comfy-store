@@ -5,11 +5,17 @@ import { customFetch } from "../utils";
 const productsUrl = "/products";
 
 export const loader = async ({ request }) => {
-  const resp = await customFetch(productsUrl);
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
+  const resp = await customFetch(productsUrl, {
+    params,
+  });
   const products = resp.data.data;
   const meta = resp.data.meta;
 
-  return { products, meta };
+  return { products, meta, params };
 };
 
 const Products = () => {
