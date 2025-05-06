@@ -4,7 +4,8 @@ import { CartItemsList, CartTotals, SectionTitle } from "../components";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const user = null;
+  const { user } = useSelector((state) => state.user);
+
   const { numItemsInCart } = useSelector((store) => store.cart);
 
   if (numItemsInCart < 1) {

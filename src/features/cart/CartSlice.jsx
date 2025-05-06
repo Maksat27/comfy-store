@@ -1,4 +1,3 @@
-import js from "@eslint/js";
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
