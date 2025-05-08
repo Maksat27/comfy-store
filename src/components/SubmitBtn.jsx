@@ -9,7 +9,7 @@ const SubmitBtn = ({ text }) => {
     <button
       type="submit"
       disabled={isSubmitting}
-      className="btn btn-primary btn-block"
+      className="btn btn-primary btn-block uppercase"
     >
       {isSubmitting ? (
         <>
