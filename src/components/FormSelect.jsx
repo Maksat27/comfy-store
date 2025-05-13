@@ -2,7 +2,7 @@ import React from "react";
 
 const FormSelect = ({ label, name, list, defaultValue, size }) => {
   return (
-    <div className="form-control ">
+    <div className="form-control flex flex-col gap-y-4">
       <label htmlFor={name} className="label">
         <span className="capitalize label-text">{label}</span>
       </label>
