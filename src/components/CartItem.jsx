@@ -1,7 +1,7 @@
 import React from "react";
 import { formatPrice, generateAmountOptions } from "../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem, editItem } from "../features/cart/cartSlice";
+import { removeItem, editItem } from "../features/cart/CartSlice";
 
 const CartItem = ({ cartItem }) => {
   const { cartID, title, image, price, amount, company, color } = cartItem;
