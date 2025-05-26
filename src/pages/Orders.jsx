@@ -6,10 +6,24 @@ import {
   ComplexPaginationContainer,
   SectionTitle,
 } from "../components";
-import { meta } from "@eslint/js";
+
+const ordersQuery = (params, user) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      customFetch("/orders", {
+        params,
+        headers: { Authorization: `Bearer ${user.token}` },
+      }),
+  };
+};
 
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const { user } = store.getState().user;
 
@@ -21,11 +35,9 @@ export const loader =
       ...new URL(request.url).searchParams.entries(),
     ]);
     try {
-      const response = await customFetch("/orders", {
-        params,
-        headers: { Authorization: `Bearer ${user.token}` },
-      });
-      console.log(response);
+      const response = await queryClient.ensureQueryData(
+        ordersQuery(params, user)
+      );
 
       return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {
@@ -40,12 +52,14 @@ export const loader =
   };
 const Orders = () => {
   const { meta } = useLoaderData();
-  if (meta.pagination.total < 1) {
-    return <SectionTitle title="Please, make an order" />;
+  console.log("meta", meta);
+
+  if (meta.pagination.total === 0) {
+    return <SectionTitle text="Please, make an order" />;
   }
   return (
     <>
-      <SectionTitle title="Your Orders" />
+      <SectionTitle text="Your Orders" />
       <OrdersList />
       <ComplexPaginationContainer />
     </>
