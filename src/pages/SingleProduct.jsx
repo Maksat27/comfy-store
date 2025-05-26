@@ -6,7 +6,7 @@ import {
   generateAmountOptions,
 } from "../utils/index";
 import { useDispatch } from "react-redux";
-import { addItem } from "../features/cart/cartSlice";
+import { addItem } from "../features/cart/CartSlice";
 
 const singleProductQuery = (id) => {
   return {
