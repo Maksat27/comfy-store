@@ -4,7 +4,7 @@ import SubmitBtn from "./SubmitBtn";
 import { store } from "../Store";
 import { customFetch, formatPrice } from "../utils";
 import { toast } from "react-toastify";
-import { clearCart } from "../features/cart/cartSlice";
+import { clearCart } from "../features/cart/CartSlice";
 
 export const action =
   (store, queryClient) =>
